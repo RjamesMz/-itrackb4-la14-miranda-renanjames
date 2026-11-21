@@ -1,8 +1,11 @@
-J1
-My HomeController is not a resource controller because its index() method only prepares and displays the application’s home page. It does not manage resource operations such as listing, viewing, creating, editing, updating, or deleting medicines.
+F1. I learned how to register, log in, and log out users in Laravel. I also learned how to protect certain pages so only logged-in users can access them. Next meeting, we will learn more about deifferent roles and controlling what users are allowed to do.
 
-J2
-Before adding withQueryString(), the pagination links included only the page number. As a result, the controller received the new page number but lost the current search, filter, and sort parameters.
+F2. Laravel changes the session ID after login for security purposes. If we don't regenerate it, someone might reuse an existing session ID to access another user's account.
 
-J3
-A misspelled sort value can silently produce unintended results instead of clearly indicating that the input is invalid. The allowed list prevents this by accepting only permitted column names and falling back to sorting by name when an invalid value is provided
+F3. Using the same error message prevents people from knowing if an email is registered or not. This helps protect users' information from being exposed.
+
+F4. The index and show pages are public because visitors should still be able to browse and view records. The other actions require login because they can add, edit, or delete data.
+
+F5. Hiding the buttons does not stop guests from accessing the pages through their URLs. The auth middleware is what actually blocks them and redirects them to the login page.
+
+F6. Laravel expects the login route to be named exactly login when someone tries to open a protected page. If the name is changed, Laravel cannot find the route and shows an error.
