@@ -41,9 +41,11 @@
                         <a href="{{ route('medicines.index') }}">Clear</a>
                     </form>
 
+                    @auth
                     <a href="{{ route('medicines.create')}}" class="btn btn-success">
                             <i class="bi bi-plus-lg me-1"></i>Add Medicine
                         </a>
+                    @endauth
                 </div>
 
                 <div class="table-responsive">
@@ -56,7 +58,9 @@
                                 <th scope="col">Type</th>
                                 <th scope="col">Availability</th>
                                 <th scope="col">Expiry Date</th>
+                                @auth
                                 <th scope="col">Action</th>
+                                @endauth
 
                             </tr>
                         </thead>
@@ -84,6 +88,7 @@
                                         </span>
                                     </td>
                                     <td>{{ $medicine['expiry_date'] }}</td>
+                                    @auth
                                     <td>
                                         <a class="btn btn-sm btn-outline-primary" href="{{ route('medicines.edit', $medicine) }}">Edit</a>
                                         <form method="POST" onsubmit="return confirm('Are you Sure?');" action="{{ route('medicines.destroy', $medicine) }}">
@@ -94,6 +99,7 @@
 
 
                                     </td>
+                                    @endauth
 
                                 </tr>
                             @empty

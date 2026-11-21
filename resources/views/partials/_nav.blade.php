@@ -20,11 +20,22 @@
                      </li>
                 </ul>
             </div>
-            <form method="POST" action="{{ route('logout')}}" class="d-inline">
-                @csrf
-                <button class="btn btn-sm btn-outline-ligth">Log out</button>
 
-            </form>
+            @guest
+                <a href="{{ route('login') }}">Log in</a>
+                <a href="{{ route('register') }}">Register</a>
+            @endguest
+
+
+            @auth
+                <div class="d-flex align-items-center gap-2">
+                    <span class="text-white">{{ auth()->user()->name }}</span>
+                    <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-sm btn-outline-light">Log out</button>
+                    </form>
+                </div>
+            @endauth
         </div>
     </nav>
 </div>
