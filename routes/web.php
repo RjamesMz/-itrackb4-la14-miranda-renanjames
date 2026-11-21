@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -18,7 +19,9 @@ Route::get('/medicines/filter/{type?}', function($type = 'all'){
  -> name('medicines.filter');
 
 
-Route::resource('medicines', MedicineController::class);
+Route::resource('medicines', MedicineController::class)
+    ->middlewareFor(['create', 'store', 'edit', 'update', 'destroy'], 'auth');
+
 
 Route::get('/register',  [RegisterController::class, 'create'])
 ->name('register');
@@ -27,4 +30,7 @@ Route::post('/register', [RegisterController::class, 'store'])
 ->name('register.store');
 
 
+Route::get('/login',   [LoginController::class, 'create'])->name('login');
+Route::post('/login',  [LoginController::class, 'store'])->name('login.store');
+Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
